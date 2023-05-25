@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.2.0/css/bootstrap.min.css"/>
+    <meta charset="UTF-8">
+    <title>Medecins List</title>
+</head>
+<body>
+<header>
+    <nav  class="navbar navbar-expand-lg  " style="background-color: #e3f2fd;">
+        <div class="container-fluid ">
+            <a class="navbar-brand fw-bold fst-italic me-5"  href="medecinsList">HealthService</a>
+            <div class="collapse navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav  ">
+                    <li class="nav-item ">
+                        <a class="nav-link disabled " aria-current="page" href="medecinsList">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-current="page" href="medecinsList">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="medecinsList">Santé</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-current="page" href="medecinsList">Contact</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="col d-flex justify-content-center mb-5" style="background-color: #e3f2fd;">
+        <h2 class="mb-4 me-5 fw-bold" >Trouvez un rendez-vous un  </h2>
+        <form th:action="@{medecinsList}" method="GET" >
+
+            <select class="form-select " aria-label="Default select example" name="specialite">
+                <option selected>Spécialites</option>
+                <option th:each="specialite:${specialiteJsp}" th:text="${specialite.nomSpecialite}" th:value="${specialite.nomSpecialite}" ></option>
+            </select>
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </form>
+    </div>
+
+</header>
+<main>
+
+    <div class="container mt-5 mb-4">
+
+        <div class="row col d-flex justify-content-center">
+        <div class="card col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2 me-5 mb-4" style="width: 18rem;" th:each="medecin:${medecinsJsp}" >
+            <img src="src/main/resources/images/medical.png" class="card-img-top"  >
+            <div class="card-body">
+                <h5 class="card-title">Docteur</h5>
+                <h5 class="card-title" th:text=${medecin.nom}></h5>
+                <h5 class="card-title" th:text=${medecin.prenom}></h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" th:text=${medecin.adresse}></li>
+            </ul>
+            <div class="card-body">
+                <a th:href="@{showMedecin(id=${medecin.idMedecin})}">Lire plus</a>
+            </div>
+
+    </div>
+        </div>
+
+    </div>
+    <div class="container mt-4 mb-4 col d-flex justify-content-center">
+        <ul class="nav nav-pills">
+            <li th:each="page, status:${pages}">
+                <a th:class="${status.index==currentPage?'btn btn-primary':'btn'}"
+                   th:href="@{medecinsList(page=${status.index}, size=${size})}"
+                   th:text="${status.index}"> </a>
+            </li>
+        </ul>
+    </div>
+
+
+</main>
+<footer class="text-center fixed-bottom text-lg-start  text-muted" style="background-color: #e3f2fd;">
+    <div class="col d-flex justify-content-center mt-5"  >
+        <p class="rights"><span>©  </span>
+            <span class="copyright-year">2023</span>
+            <span> </span><span>Company</span>
+            <span> - </span>
+            <span>All Rights Reserved.</span></p>
+
+    </div>
+
+</footer>
+</body>
+</html>
+
+<!--
+  <div class="col-sm-2">
+        <form th:action="@{medecinsList}" method="GET">
+            <select class="form-select" aria-label="Default select example" name="specialite">
+                <option value="">Spécialités</option>
+                <option th:each="specialite: ${specialiteJsp}" th:text="${specialite.nomSpecialite}" th:value="${specialite.nomSpecialite}"></option>
+            </select>
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </form>
+    </div>
+
+
+     <div class="col-sm-2  ">
+            <select class="form-select " aria-label="Default select example" name="specialite">
+                <option selected>Spécialites</option>
+                <option th:each="specialite:${specialiteJsp}" th:text="${specialite.nomSpecialite}" th:value="${specialite.nomSpecialite}" ></option>
+            </select>
+        </div>
+
+        <header>
+    <nav  class="navbar navbar-expand-lg  " style="background-color: #e3f2fd;">
+        <div class="container-fluid ">
+            <a class="navbar-brand fw-bold fst-italic me-5"  href="medecinsList">HealthService</a>
+            <div class="collapse navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav  ">
+                    <li class="nav-item ">
+                        <a class="nav-link disabled " aria-current="page" href="medecinsList">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-current="page" href="medecinsList">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="medecinsList">Santé</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-current="page" href="medecinsList">Contact</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="col d-flex justify-content-center mb-5" style="background-color: #e3f2fd;">
+        <h2 class="mb-4 me-5 fw-bold" >Trouvez un rendez-vous un  </h2>
+        <form th:action="@{medecinsList}" method="GET" >
+
+            <select class="form-select " aria-label="Default select example" name="specialite">
+                <option selected>Spécialites</option>
+                <option th:each="specialite:${specialiteJsp}" th:text="${specialite.nomSpecialite}" th:value="${specialite.nomSpecialite}" ></option>
+            </select>
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </form>
+    </div>
+
+</header>
+
+
+
+-->

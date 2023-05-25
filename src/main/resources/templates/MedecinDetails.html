@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.2.0/css/bootstrap.min.css"/>
+    <meta charset="UTF-8">
+    <title>Medecins Detail</title>
+</head>
+<body>
+<header>
+    <nav  class="navbar navbar-expand-lg  " style="background-color: #e3f2fd;">
+        <div class="container-fluid ">
+            <a class="navbar-brand fw-bold fst-italic me-5"  href="medecinsList">HealthService</a>
+            <div class="collapse navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav  ">
+                    <li class="nav-item ">
+                        <a class="nav-link disabled " aria-current="page" href="medecinsList">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-current="page" href="medecinsList">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="medecinsList">Santé</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-current="page" href="medecinsList">Contact</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="col d-flex justify-content-center mb-5" style="background-color: #e3f2fd;">
+        <h2 class="mb-4 me-2 fw-bold" >Dr <p>
+            <h2 class="me-2 fw-bold" th:text=${medecinsJsp.nom}></h2>
+            <h2 class=" fw-bold" th:text=${medecinsJsp.prenom}></h2>
+            <h6 class=" me-2 fw-light" th:text="${nomSpecialite}"></h6>
+        </p>  </h2>
+    </div>
+
+</header>
+<main >
+    <div class="container mt-5 mb-4">
+
+        <div class="row col d-flex justify-content-center">
+            <div class="card mb-3 " style="max-width: 540px;"  >
+                <div class="card-body">
+                    <h5 class="card-title">Adresse :</h5>
+                    <h5 class="card-title" th:text=${medecinsJsp.adresse}></h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <h6>Langues Parlées: </h6>
+                    <li class="list-group-item" th:text=${medecinsJsp.languesParlees}></li>
+                    <h6>Autres Formations: </h6>
+                    <li class="list-group-item" th:text=${medecinsJsp.autresFormations}></li>
+                    <h6>Horaire Ouverture: </h6>
+                    <li class="list-group-item" th:text=${medecinsJsp.horaireOuverture}></li>
+                </ul>
+                <div class="card-body">
+                    <h6>Coordonnées: </h6>
+                    <p th:text=${medecinsJsp.coordonnees}></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</main>
+<footer class="text-center fixed-bottom text-lg-start  text-muted" style="background-color: #e3f2fd;">
+    <div class="col d-flex justify-content-center mt-5"  >
+        <p class="rights"><span>©  </span>
+            <span class="copyright-year">2023</span>
+            <span> </span><span>Company</span>
+            <span> - </span>
+            <span>All Rights Reserved.</span></p>
+
+    </div>
+
+</footer>
+</body>
+</html>
